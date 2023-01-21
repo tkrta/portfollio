@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('image_path', 100);
-            $table->integer('tortal_point');
-            $table->rememberToken();
+            $table->bigInteger('card_id')->unsigned();
+            $table->bigInteger('stamp_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('todo', 20);
+            $table->tinyInteger('progress');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('todos');
     }
 };

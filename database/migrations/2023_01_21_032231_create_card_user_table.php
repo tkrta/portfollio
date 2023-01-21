@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('image_path', 100);
-            $table->integer('tortal_point');
-            $table->rememberToken();
+        Schema::create('card_user', function (Blueprint $table) {
+            $table->foreignId('card_id')->constrained('cards');
+            $table->foreignId('user_id')->constrained('users');
+            $table->primary(['card_id', 'user_id']);  
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('card_user');
     }
 };
