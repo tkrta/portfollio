@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('card_id')->unsigned();
-            $table->bigInteger('stamp_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+            $table->foreignId('card_id')->constrained('cards');
+            $table->foreignId('stamp_id')->constrained('stamps');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('todo', 20);
             $table->tinyInteger('progress');
             $table->timestamps();

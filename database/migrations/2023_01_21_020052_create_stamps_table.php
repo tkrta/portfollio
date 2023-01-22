@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('stamps', function (Blueprint $table) {
             $table->id();
-            $table->string('image_path', 100);
+            $table->text('image_path');
             $table->string('name', 20);
             $table->smallInteger('price');
             $table->timestamps();
