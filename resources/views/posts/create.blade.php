@@ -18,8 +18,10 @@
                 <textarea name="post[body]" placeholder="コメントを入力">{{ old('post.body') }}</textarea>
                 <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
             </div>
-            <input type="submit" value="保存"/>
+            <input type="submit" value="store"/>
         </form>
-        <div class="back">[<a href="/">back</a>]</div>
+        <div class="back">
+            <a href="/posts">戻る</a>
+        </div>
     </body>
 </html>
