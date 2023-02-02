@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->char('color', 16);
+            $table->char('color', 7);
             $table->smallInteger('price');
             $table->timestamps();
             $table->softDeletes();

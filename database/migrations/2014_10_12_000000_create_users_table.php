@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->text('image_path');
-            $table->integer('tortal_point');
+            $table->text('image_path')->default('storage/guest_icon.png');
+            $table->integer('tortal_point')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

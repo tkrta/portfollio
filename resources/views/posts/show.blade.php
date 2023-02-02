@@ -22,6 +22,20 @@
         <div class= "edit">
             <a href= "/posts/{{ $post->id }}/edit">edit</a>
         </div>
+        <a href= '/posts/{{ $post->id }}/create'>reply</a>
+        <div class= "replies">
+            @foreach ($replies as $reply)
+                <div class= "reply">
+                    <a href= "/posts/{{ $post->id }}/{{ $reply->id }}">
+                        <h4 class= "reply_title">{{ $reply->title }}</h4>
+                    </a>
+                    <p class= "reply_body">{{ $reply->body}}</p>    
+                </div>
+                <div class='paginate'>
+                    {{ $replies->links() }}
+                </div>
+            @endforeach
+        </div>
         <div class= "footer">
             <a href= "/posts">戻る</a>
         </div>

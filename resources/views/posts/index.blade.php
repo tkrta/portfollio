@@ -23,6 +23,16 @@
                     @method('DELETE')
                     <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
                 </form>
+                    @if ($post->islikes())
+                        <form action={{ "/unlike/" . $post->id }}>
+                            <button>いいね解除</button>
+                        </form>
+                    @else
+                        <form action={{ "/like/" . $post->id }}>
+                            <button>いいね</button>
+                        </form>
+                    @endif
+                    <span>{{ $post->users->count() }}</span>
             </div>
             @endforeach
         </div>
