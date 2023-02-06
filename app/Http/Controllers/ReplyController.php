@@ -9,24 +9,44 @@ use App\Http\Requests\ReplyRequest;
 class ReplyController extends Controller
 {
     public function index (Reply $reply)
-        {
-            return view('posts/show')-> with(['replies'=> $reply->getPaginateByLimit()]);
-        }
+    {
+        return view('posts/show')-> with(['replies'=> $reply->getPaginateByLimit()]);
+    }
         
-    public function create ()
-        {
-            return view('replies/create');
-        }
+    public function show (Post $post, Reply $reply)
+    {
+        return view('replies/show')-> with(['reply'=> $reply, 'post'=> $post]);
+    }
         
-    public function show (Reply $reply)
-        {
-            return view('replies/show')-> with(['reply'=> $reply]);
-        }
+    public function create (Post $post)
+    {
+        return view('replies/create')->with(['post'=> $post]);
+    }    
         
-    public function store (ReplyRequest $request, Reply $reply)
-        {
-            $input = $request['reply'];
-            $reply->fill($input)->save();
-            return redirect('/posts/{post}/' . $reply->id);
-        }
+    public function store (ReplyRequest $request, Reply $reply, Post $post)
+    {
+        $input = $request['reply'];
+        $input['post_id'] = $post->id;
+        $input['user_id'] = auth()->user()->id;
+        $reply->fill($input)->save();
+        return redirect('/posts/' . $post->id);
+    }
+        
+    public function edit (Post $post, Reply $reply)
+    {
+        return view('replies/edit')->with(['reply'=> $reply, 'post'=> $post]);
+    }
+        
+    public function update (Post $post, Reply $reply, ReplyRequest $request)
+    {
+        $input_reply = $request['reply'];
+        $reply->fill($input_reply)->save();
+        return redirect('/posts/' . $post->id);
+    }
+        
+    public function delete(Post $post, Reply $reply)
+    {
+        $reply->delete();
+        return redirect('/posts/' . $post->id);
+    }
 }

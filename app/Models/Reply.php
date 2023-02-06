@@ -15,7 +15,7 @@ class Reply extends Model
             'post_id',
             'user_id',
             'title',
-            'body'
+            'body',
         ];
     
     public function getPaginateByLimit (int $limit_count = 10)
@@ -25,7 +25,7 @@ class Reply extends Model
         
     public function replied_post ()
         {
-            return $this->belongsTo(Post::class);
+            return $this-> belongsTo(Post::class);
         }
         
 }

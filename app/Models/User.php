@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image_path',
+        'tortal_point',
     ];
 
     /**
@@ -46,4 +48,10 @@ class User extends Authenticatable
     {
         return $this-> belongsToMany(Post::class, 'likes', 'user_id', 'post_id');
     }
+    
+    public function bought_stamps ()
+        {
+            return $this-> belongsToMany(Stamp::class, 'stamp_user', 'user_id', 'stamp_id');
+        }
+        
 }

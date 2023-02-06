@@ -17,6 +17,7 @@
                 <p>{{ $reply->body }}</p>    
             </div>
         </div>
+        <div class="edit"><a href='/posts/replies/{{ $post->id }}/{{ $reply->id }}/edit'>edit</a></div>
         <div class="footer">
             <a href="/posts/{{ $post->id }}">戻る</a>
         </div>

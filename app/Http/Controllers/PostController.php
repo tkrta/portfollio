@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use App\Models\User;
+use App\Models\Reply;
 
 class PostController extends Controller
 {
@@ -13,10 +14,10 @@ class PostController extends Controller
             return view('posts/index')-> with(['posts'=> $post->getPaginateByLimit()]);
         }
     
-    public function show (Post $post)
+    public function show (Post $post, Reply $reply)
         {
-            dd($post->islikes());
-            return view('posts/show')-> with(['post'=> $post]);
+            $replies = $reply->where('post_id', $post->id)->paginate();
+            return view('posts/show')-> with(['post'=> $post, 'replies'=>$replies]);
         }
         
     public function create()
@@ -47,7 +48,7 @@ class PostController extends Controller
     public function delete(Post $post)
         {
             $post->delete();
-            return redirect('/');
+            return redirect('/posts');
         }
     
     public function like (Post $post)

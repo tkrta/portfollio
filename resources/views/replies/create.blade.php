@@ -7,7 +7,7 @@
     
     <body>
         <h1>返信　タイトル</h1>
-        <form action="/posts/{{ $post->id }}" method="POST">
+        <form action="/posts/replies/{{ $post->id }}" method="POST">
             @csrf
             <div class= "reply_title">
                 <h2>Title</h2>
@@ -20,5 +20,8 @@
                 <p class="body_error" style="color:red">{{ $errors->first('reply.body') }}</p>
             </div>
             <input type= "submit" value= "store"/>
+            <div class= "footer">
+            <a href= "/posts/{{ $post->id }}">戻る</a>
+            </div>
     </body>
 </html>

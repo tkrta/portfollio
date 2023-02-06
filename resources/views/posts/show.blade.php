@@ -22,14 +22,19 @@
         <div class= "edit">
             <a href= "/posts/{{ $post->id }}/edit">edit</a>
         </div>
-        <a href= '/posts/{{ $post->id }}/create'>reply</a>
+        <a href= "/posts/replies/{{ $post->id }}/create">reply</a>
         <div class= "replies">
             @foreach ($replies as $reply)
                 <div class= "reply">
-                    <a href= "/posts/{{ $post->id }}/{{ $reply->id }}">
+                    <a href= '/posts/replies/{{ $post->id }}/{{ $reply->id }}'>
                         <h4 class= "reply_title">{{ $reply->title }}</h4>
                     </a>
-                    <p class= "reply_body">{{ $reply->body}}</p>    
+                    <p class= "reply_body">{{ $reply->body }}</p>  
+                    <form action='/posts/replies/{{ $post->id }}/{{ $reply->id }}' id="form_{{ $reply->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="deleteReply({{ $reply->id }})">delete</button> 
+                    </form>
                 </div>
                 <div class='paginate'>
                     {{ $replies->links() }}
@@ -40,5 +45,15 @@
             <a href= "/posts">戻る</a>
         </div>
     </body>
+    
+    <script>
+        function deleteReply(id) {
+            'use strict'
+    
+            if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                document.getElementById(`form_${id}`).submit();
+            }
+        }
+    </script>
     
 </html>    

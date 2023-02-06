@@ -3,7 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\StampController;
+use App\Http\Controllers\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,14 @@ Route::delete('/posts/{post}', [PostController::class,'delete']);
 Route::get('/like/{post}', [PostController::class, 'like']);
 Route::get('/unlike/{post}', [PostController::class, 'unlike']);
 
-Route::get('/posts/{post}', [ReplyController::class, 'index']);
-Route::get('/posts/{post}/create', [ReplyController::class, 'create']);
-Route::get('/posts/{post}/{reply}', [ReplyController::class, 'show']);
-Route::post('/posts/{post}', [ReplyController::class, 'store']);
+Route::get('/posts/replies/{post}', [ReplyController::class, 'index']);
+Route::get('/posts/replies/{post}/create', [ReplyController::class, 'create']);
+Route::get('/posts/replies/{post}/{reply}', [ReplyController::class, 'show']);
+Route::post('/posts/replies/{post}', [ReplyController::class, 'store']);
+Route::get('/posts/replies/{post}/{reply}/edit', [ReplyController::class, 'edit']);
+Route::put('/posts/replies/{post}/{reply}', [ReplyController::class, 'update']);
+Route::delete('/posts/replies/{post}/{reply}', [ReplyController::class, 'delete']);
+
+Route::get('/stamps', [StampController::class, 'index']);
+Route::get('/stamps/{stamp}', [StampController::class, 'buy']);
+Route::put('/stamps/{stamp}', [StampController::class, 'update']);
