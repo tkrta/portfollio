@@ -10,7 +10,7 @@
     </head>
     
     <body>
-        <h1>SHOP</h1>
+        <h1>Stamp Shop</h1>
         <h2 class="shop_menu">
             <a href="/stamps">stamps</a>
             <a href="/carads">carads</a>    

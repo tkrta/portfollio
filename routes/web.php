@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StampController;
 use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +56,7 @@ Route::delete('/posts/replies/{post}/{reply}', [ReplyController::class, 'delete'
 Route::get('/stamps', [StampController::class, 'index']);
 Route::get('/stamps/{stamp}', [StampController::class, 'buy']);
 Route::put('/stamps/{stamp}', [StampController::class, 'update']);
+
+Route::get('/cards', [CardController::class, 'index']);
+Route::get('/cards/{card}', [CardController::class, 'buy']);
+Route::put('/cards/{card}', [CardController::class, 'update']);

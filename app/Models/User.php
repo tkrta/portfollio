@@ -50,8 +50,18 @@ class User extends Authenticatable
     }
     
     public function bought_stamps ()
-        {
-            return $this-> belongsToMany(Stamp::class, 'stamp_user', 'user_id', 'stamp_id');
-        }
+    {
+        return $this-> belongsToMany(Stamp::class, 'stamp_user', 'user_id', 'stamp_id');
+    }
+        
+    public function bought_cards ()
+    {
+        return $this-> belongsToMany(Card::class, 'card_user', 'user_id', 'card_id');
+    }
+    
+    public function todo ()
+    {
+        return $this->hasOne(Todo::class);
+    }
         
 }

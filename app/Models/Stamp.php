@@ -10,8 +10,6 @@ class Stamp extends Model
 {
     use HasFactory;
     
-    protected $table ='stamps';
-    
     protected $fillable =[
             'image_path',
             'name',
@@ -43,9 +41,14 @@ class Stamp extends Model
         //購入できるかどうか
     public function canBuy ()
     {
-        if(auth()->user()->tortal_point >= $this->price) {
+        if(auth()->user()->total_point >= $this->price) {
             return true;
         }
         return false;
+    }
+    
+    public function todo ()
+    {
+        return $this->belongsTo(Todo::class);
     }
 }
