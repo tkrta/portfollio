@@ -13,7 +13,7 @@
         <h1>Stamp Shop</h1>
         <h2 class="shop_menu">
             <a href="/stamps">stamps</a>
-            <a href="/carads">carads</a>    
+            <a href="/cards">carads</a>    
         </h2>
         @foreach ($stamps as $stamp)
         <div class="stamps">
@@ -21,13 +21,15 @@
             <p name="stamp[name]">{{ $stamp->name }}</p>
             <p name="stamp[price]">{{ $stamp->price }} p</p>
             @if ($stamp->isBought())
-                <form>
+                <form action="/stamps/{{ $stamp->id }}" method="POST">
+                    @method("PUT")
                     @csrf
                     <button>変更</button>
                 </form>
             @else 
                 @if ($stamp->canBuy())
-                    <form>
+                    <form action="/stamps/{{ $stamp->id }}" method="POST">
+                        @csrf
                         <button>購入</button>
                     </form>
                 @else 

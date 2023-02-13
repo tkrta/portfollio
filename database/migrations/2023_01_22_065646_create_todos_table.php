@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('card_id')->constrained('cards');
-            $table->foreignId('stamp_id')->constrained('stamps');
+            $table->foreignId('card_id')->default(1)->constrained('cards');
+            $table->foreignId('stamp_id')->default(1)->constrained('stamps');
             $table->foreignId('user_id')->constrained('users');
-            $table->string('todo', 20);
-            $table->tinyInteger('progress');
+            $table->string('todo', 100);
+            $table->tinyInteger('progress')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

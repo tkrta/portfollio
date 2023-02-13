@@ -8,46 +8,37 @@
     </head>
     
     <body>
-        <h1>Card Shop</h1>
-        <h2 class="shop_menu">
-            <a href="/stamps">stamps</a>
-            <a href="/cards">carads</a>    
-        </h2>
-        @foreach ($cards as $card)
-        <div class="cards">
-            <p style="color:{{ $card->color }}">test</p>
-            <canvas id="square" onload="square()" width="100" height="100"></canvas>
-            <p name="card[price]">{{ $card->price }} p</p>
-            @if ($card->isBought())
-                <form>
-                    @csrf
-                    <button>変更</button>
-                </form>
-            @else 
-                @if ($card->canBuy())
-                    <form>
-                        <button>購入</button>
-                    </form>
-                @else 
-                    <p>ポイントが足りません</p>
-                @endif 
-               
-            @endif
-        </div>
-        @endforeach
-        
-        @foreach ($cards as $card)
-        <script>
-                onload = function square() {
-                    'use strict'
-                    
-                    var canvas = document.getElementById("square");
-                    var ctx = canvas.getContext("2d");
-                    ctx.beginPath();
-                    ctx.fillStyle = '{{ $card->color }}';
-                    ctx.fillRect(0,0,100,100);
-                }
-        </script>
-        @endforeach
+        <x-app-layout>
+            <x-slot name="header">
+                Card Shop
+                <a href="/stamps">Stamp Shopへ<a>
+            </x-slot>
+            @foreach ($cards as $card)
+            <div class="cards">
+                <div style="background-color:{{ $card->color }}" class="w-1/6 py-10"></div>
+                <p name="card[price]">{{ $card->price }} p</p>
+                <div class="button">
+                    @if ($card->isBought())
+                        <form action="/cards/{{ $card->id }}"　method="POST">
+                            @method("PUT")
+                            @csrf
+                            <button>変更</button>
+                        </form>
+                    @else 
+                        @if ($card->canBuy())
+                            <form action="/cards/{{ $card->id }}" method="POST">
+                                @csrf
+                                <button>購入</button>
+                            </form>
+                        @else 
+                            <p>ポイントが足りません</p>
+                        @endif 
+                       
+                    @endif
+                </div>
+            </div>
+            @endforeach
+            
+        </x-app-layout>
     </body>
 </html>

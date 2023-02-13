@@ -20,7 +20,7 @@ class TodoRequest extends FormRequest
     public function rules()
     {
         return [
-            'todo.stamp_id' => 'require',
+            'todo.todo' => 'required|string|max:100',
         ];
     }
 }

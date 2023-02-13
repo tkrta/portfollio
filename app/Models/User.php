@@ -59,9 +59,9 @@ class User extends Authenticatable
         return $this-> belongsToMany(Card::class, 'card_user', 'user_id', 'card_id');
     }
     
-    public function todo ()
+    public function todos ()
     {
-        return $this->hasOne(Todo::class);
+        return $this->hasMany(Todo::class);
     }
         
 }
