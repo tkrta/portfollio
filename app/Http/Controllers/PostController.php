@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use App\Models\User;
 use App\Models\Reply;
+use Cloudinary;
 
 class PostController extends Controller
 {

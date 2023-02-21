@@ -25,13 +25,21 @@ class Todo extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function cards ()
+    public function card ()
     {
-        return $this->hasMany(Card::class);
+        return $this->belongsTo(Card::class);
     }
     
     public function stamp ()
     {
         return $this->belongsTo(Stamp::class);
+    }
+    
+    public function lasttodo ()
+    {
+        if($this->where('user_id', '=', auth()->user()->id)->exists()) {
+            return $this->where('user_id', '=', auth()->user()->id)->orderBy('updated_at', 'DESC')->first();
+        } 
+            
     }
 }

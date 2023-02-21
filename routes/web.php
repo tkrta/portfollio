@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\MissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StampController;
 use App\Http\Controllers\ReplyController;
@@ -37,7 +39,8 @@ require __DIR__.'/auth.php';
 
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('/', [TodoController::class, 'create'])-> name('todo');
+    Route::get('/', [TodoController::class, 'toppage'])-> name('top');
+    Route::get('/todos', [TodoController::class, 'newtodo'])-> name('todo');
     Route::post('/todos', [TodoController::class, 'store']);
     Route::get('/todos/{todo}', [TodoController::class, 'show']);
     Route::post('/todos/{todo}', [TodoController::class, 'did']);
@@ -70,4 +73,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/cards', [CardController::class, 'index']);
     Route::post('/cards/{card}', [CardController::class, 'buy']);
     Route::put('/cards/{card}', [CardController::class, 'update']);
+    
+    Route::get('/histories', [HistoryController::class, 'index'])-> name('history');
+    
+    Route::get('/missions', [MissionController::class, 'index'])-> name('mission');
+    Route::put('/missions/{user}', [MissionController::class, 'point']);
+    Route::get('/missions/{mission}', [MissionController::class, 'progressed']);
 });

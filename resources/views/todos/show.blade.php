@@ -18,14 +18,14 @@
                 @csrf
                 <button>できた</button>
             </form>
-            <div class="grid grid-cols-6 gap-4">
+            <div class="w-72 grid grid-cols-6 gap-1 divide-x divide-y divide-slate-700 border-2">
                 @for ($i = 0; $i < $todo->progress; $i++)
-                     <img src="{{ $todo->stamp->image_path }}" w="0.5" h="0.5">
+                     <img src="{{ $todo->stamp->image_path }}" width="50" height="50">
                 @endfor
                    
                
                 @for ($i = $todo->progress; $i < 30; $i++)
-                    <div class="bg-red-300 w-10 p-5"></div>
+                    <div class="w-10 p-5" style="background-color:{{ $todo->card->color }};"></div>
                 @endfor
             </div>
             <div class="back">
@@ -41,6 +41,13 @@
                     @method('DELETE')
                     <button type="button" onclick="deleteTodo({{ $todo->id }})">削除</button>
                 </form>
+            </div>
+            <div class="newtodo">
+                @if ($todo->progress >= 30)
+                    <form action="/todos">
+                        <button>New Todo</button>
+                    </form>    
+                @endif
             </div>
         </div>
         

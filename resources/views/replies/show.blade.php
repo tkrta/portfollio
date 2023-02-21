@@ -8,18 +8,24 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1 class="reply_title">
-            {{ $reply->title }}
-        </h1>
-        <div class="reply_content">
-            <div class="content_reply">
-                <h3>本文</h3>
-                <p>{{ $reply->body }}</p>    
+        <x-app-layout>
+            <x-slot name="header">
+                Reply Show
+            </x-slot>
+            <h1 class="reply_title">
+                {{ $reply->title }}
+            </h1>
+            <div class="reply_content">
+                <div class="content_reply">
+                    <h3>本文</h3>
+                    <p>{{ $reply->body }}</p>    
+                </div>
             </div>
-        </div>
-        <div class="edit"><a href='/posts/replies/{{ $post->id }}/{{ $reply->id }}/edit'>edit</a></div>
-        <div class="footer">
-            <a href="/posts/{{ $post->id }}">戻る</a>
-        </div>
+            <div class="edit"><a href='/posts/replies/{{ $post->id }}/{{ $reply->id }}/edit'>edit</a></div>
+            <div class="footer">
+                <a href="/posts/{{ $post->id }}">戻る</a>
+            </div>
+            
+        </x-app-layout>
     </body>
 </html>

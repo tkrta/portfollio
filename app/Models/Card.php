@@ -45,8 +45,8 @@ class Card extends Model
         return false;
     }
     
-    public function todo ()
+    public function todos ()
     {
-        return $this->belongsTo(Todo::class);
+        return $this->hasMany(Todo::class);
     }
 }

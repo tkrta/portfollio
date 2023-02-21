@@ -26,5 +26,7 @@
                     <input type= 'submit' value= "保存"/>
                 </form>
             </div>
+            
+        </x-app-layout>
     </body>
 </html>

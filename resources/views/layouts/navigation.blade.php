@@ -15,15 +15,23 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('top')" :active="request()->routeIs('top')">
+                        {{ __('Top') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('todo')" :active="request()->routeIs('todo')">
                         {{ __('Todo') }}
                     </x-nav-link>
-                     
-                     <x-nav-link :href="route('post')" :active="request()->routeIs('post')">
+                    <x-nav-link :href="route('post')" :active="request()->routeIs('post')">
                         {{ __('Post') }}
                     </x-nav-link>
-                     <x-nav-link :href="route('shop')" :active="request()->routeIs('shop')">
+                    <x-nav-link :href="route('shop')" :active="request()->routeIs('shop')">
                         {{ __('Shop') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
+                        {{ __('History') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('mission')" :active="request()->routeIs('mission')">
+                        {{ __('Mission') }}
                     </x-nav-link>
                      
                 </div>

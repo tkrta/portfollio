@@ -9,30 +9,43 @@ use Clowdinary;
 
 class TodoController extends Controller
 {
-    public function create (Todo $todo)
+    public function toppage (Todo $todo)
+    {
+        return view('todos/toppage')->with(['todo'=> $todo]);
+    }
+    
+    public function create (Todo $todo, User $user)
     {
         return view('todos/create')->with(['todo'=> $todo->get()]);
     }
     
+    public function show (Todo $todo, User $user)
+    {
+        if ($todo->lasttodo()) {
+            return view('todos/show')-> with(['todo'=> $todo->lasttodo()]);
+        }
+    }
+    
     public function store (Todo $todo, TodoRequest $request)
     {
-        
         $input = $request['todo'];
         $input['user_id'] = auth()->id();
         $todo->fill($input)->save();
         return redirect('/todos/' . $todo->id);
     }
     
-    public function show (Todo $todo)
+    public function newtodo (Todo $todo)
     {
-        
-        return view('todos/show')-> with(['todo'=> $todo]);
+        return view('todos/create')-> with(['todo'=> $todo]);
     }
     
     public function did (Todo $todo, User $user)
     {
+        $user = auth()->user();
+        $user['total_point'] += 1;
         $todo['progress'] += 1;
         $todo->save();
+        $user->save();
         return redirect('/todos/' . $todo->id);
     }
     
