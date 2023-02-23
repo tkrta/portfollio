@@ -10,20 +10,17 @@
     <body>
         <x-app-layout>
             <x-slot name="header">
-                Reply Show
+                <a href= "/posts/{{ $post->id }}" class="block h-9 w-9 p-1 text-lg font-semibold text-center text-white border rounded-full hover:border-slate-400 bg-blue-400">←</a>
             </x-slot>
-            <h1 class="reply_title">
-                {{ $reply->title }}
-            </h1>
-            <div class="reply_content">
-                <div class="content_reply">
-                    <h3>本文</h3>
-                    <p>{{ $reply->body }}</p>    
+            <div class="h-screen w-1/3 block mx-auto mt-16">
+                <div class="mt-8 border border-gray-200 border-2 rounded-2xl divide-y-2 divide-gray-200 bg-white">
+                    <div>
+                        <h2 class="text-2xl ml-4 my-6">{{ Auth::user()->name }}</h2>
+                        <h1 class= "text-2xl ml-8 underline mb-3">{{ $reply->title }}</h1>
+                        <p class="text-xl ml-10">{{ $reply->body }}</p>
+                        <a href='/posts/replies/{{ $post->id }}/{{ $reply->id }}/edit' class="ml-auto mb-2 block h-9 w-20 py-1 text-base font-medium text-center text-gray-700 border rounded-full hover:border-slate-400 hover:bg-purple-400 hover:text-white">edit</a>
+                    </div>
                 </div>
-            </div>
-            <div class="edit"><a href='/posts/replies/{{ $post->id }}/{{ $reply->id }}/edit'>edit</a></div>
-            <div class="footer">
-                <a href="/posts/{{ $post->id }}">戻る</a>
             </div>
             
         </x-app-layout>

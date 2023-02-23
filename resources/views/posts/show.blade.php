@@ -15,7 +15,7 @@
                 <a href= "/posts" class="block h-9 w-9 p-1 text-lg font-semibold text-center text-white border rounded-full hover:border-slate-400 bg-blue-400">←</a>
             </x-slot>
             <div class="h-screen w-1/3 block mx-auto mt-16">
-                <div class="mt-8 border border-gray-200 border-2 rounded-2xl divide-y-2 divide-gray-200">
+                <div class="mt-8 border border-gray-200 border-2 rounded-2xl divide-y-2 divide-gray-200 bg-white">
                     <div class="post">
                         <div class="flex ml-4 my-6">
                             <h2 class="text-2xl">{{ Auth::user()->name }}</h2>

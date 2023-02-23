@@ -12,44 +12,46 @@
             <x-slot name="header">
                 Todo
             </x-slot>
-        <div class="todos">
-            <h1>{{ $todo->todo }}</h1>
-            <form action="/todos/{{ $todo->id }}" method="POST">
-                @csrf
-                <button>できた</button>
-            </form>
-            <div class="w-72 grid grid-cols-6 gap-1 divide-x divide-y divide-slate-700 border-2">
-                @for ($i = 0; $i < $todo->progress; $i++)
-                     <img src="{{ $todo->stamp->image_path }}" width="50" height="50">
-                @endfor
-                   
-               
-                @for ($i = $todo->progress; $i < 30; $i++)
-                    <div class="w-10 p-5" style="background-color:{{ $todo->card->color }};"></div>
-                @endfor
+            <div class="h-screen w-2/3 block mx-auto mt-16">
+                <div class="mt-8 divide-y-2 divide-gray-200">
+                    <div class="bg-white border border-gray-200 border-2 rounded-2xl">
+                        <h1 class="text-2xl my-6 text-center mx-auto">{{ $todo->todo }}</h1>
+                        <form action="/todos/{{ $todo->id }}" method="POST">
+                            @csrf
+                            <button class="block h-9 w-20 py-1 my-4 mx-auto text-base font-medium text-center border rounded-full text-black bg-white hover:border-slate-400 hover:bg-blue-400 hover:text-white">できた</button>
+                        </form>
+                        <div class="w-96 grid grid-cols-6 gap-0 block border-2 divide-x divide-y divide-black mx-auto">
+                                @for ($i = 0; $i < $todo->progress; $i++)
+                                     <img src="{{ $todo->stamp->image_path }}" class="w-16 h-16">
+                                @endfor
+                                   
+                               
+                                @for ($i = $todo->progress; $i < 30; $i++)
+                                    <div class="w-16 h-16" style="background-color:{{ $todo->card->color }};"></div>
+                                @endfor
+                        </div>
+                        <div class="flex block my-4 ml-64">
+                                <form action="/todos/{{ $todo->id }}" id="form_{{ $todo->id }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="button" onclick="backTodo({{ $todo->id }})" class="block h-9 w-20 py-1 my-2 text-base font-medium text-center border rounded-full text-black bg-white hover:border-slate-400 hover:bg-green-400 hover:text-white">戻る</button>
+                                </form>
+                                <form action="/todos/{{ $todo->id }}" id="form_{{ $todo->id }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" onclick="deleteTodo({{ $todo->id }})" class="block h-9 w-20 py-1 my-2 ml-64 text-base font-medium text-center border rounded-full text-black bg-white hover:border-slate-400 hover:bg-red-400 hover:text-white">削除</button>
+                                </form>
+                        </div>
+                        <div class="newtodo">
+                            @if ($todo->progress >= 30)
+                                <form action="/">
+                                    <button class="text-2xl my-6 text-center ml-20 underline"> < New Todo</button>
+                                </form>    
+                            @endif
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="back">
-                <form action="/todos/{{ $todo->id }}" id="form_{{ $todo->id }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <button type="button" onclick="backTodo({{ $todo->id }})">戻る</button>
-                </form>
-            </div>
-            <div class="delete">
-                <form action="/todos/{{ $todo->id }}" id="form_{{ $todo->id }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" onclick="deleteTodo({{ $todo->id }})">削除</button>
-                </form>
-            </div>
-            <div class="newtodo">
-                @if ($todo->progress >= 30)
-                    <form action="/todos">
-                        <button>New Todo</button>
-                    </form>    
-                @endif
-            </div>
-        </div>
         
         <script>
             function backTodo(id) {

@@ -9,15 +9,6 @@ use Clowdinary;
 
 class TodoController extends Controller
 {
-    public function toppage (Todo $todo)
-    {
-        return view('todos/toppage')->with(['todo'=> $todo]);
-    }
-    
-    public function create (Todo $todo, User $user)
-    {
-        return view('todos/create')->with(['todo'=> $todo->get()]);
-    }
     
     public function show (Todo $todo, User $user)
     {
@@ -34,7 +25,7 @@ class TodoController extends Controller
         return redirect('/todos/' . $todo->id);
     }
     
-    public function newtodo (Todo $todo)
+    public function newtodo (Todo $todo, User $user)
     {
         return view('todos/create')-> with(['todo'=> $todo]);
     }

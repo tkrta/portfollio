@@ -39,8 +39,7 @@ require __DIR__.'/auth.php';
 
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('/', [TodoController::class, 'toppage'])-> name('top');
-    Route::get('/todos', [TodoController::class, 'newtodo'])-> name('todo');
+    Route::get('/', [TodoController::class, 'newtodo'])-> name('todo');
     Route::post('/todos', [TodoController::class, 'store']);
     Route::get('/todos/{todo}', [TodoController::class, 'show']);
     Route::post('/todos/{todo}', [TodoController::class, 'did']);
@@ -77,6 +76,5 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/histories', [HistoryController::class, 'index'])-> name('history');
     
     Route::get('/missions', [MissionController::class, 'index'])-> name('mission');
-    Route::put('/missions/{user}', [MissionController::class, 'point']);
-    Route::get('/missions/{mission}', [MissionController::class, 'progressed']);
+    Route::put('/missions', [MissionController::class, 'point']);
 });
