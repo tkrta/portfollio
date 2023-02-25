@@ -24,6 +24,15 @@ class Card extends Model
         return $this-> belongsToMany(User::class, 'card_user', 'card_id', 'user_id');
     }
     
+        //適用中かどうか
+    public function setting ()
+    {
+        if (Todo::where('user_id', '=', auth()->user()->id)->orderBy('updated_at', 'DESC')->first()->card_id == $this->id) {
+            return true;
+        }
+        return false;
+    }
+    
     //購入済かどうか
     public function isBought ()
     {

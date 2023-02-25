@@ -17,8 +17,9 @@
                     <a href="/cards" class="block h-11 w-28 py-2 text-lg font-semibold text-center text-white border rounded-full hover:border-slate-400 bg-blue-400 ml-auto">Card Shop</a>
                 </div>
             </x-slot>
-            <div class="h-full w-full block mt-16">
-                <div class="grid grid-cols-3 gap-2 mt-8 mx-auto bg-white">
+            <div class="h-full w-full block mt-4 bg-white">
+                <h3 class="block w-1/4 mt-4 ml-auto pr-2 pt-4 text-right text-xl underline">{{ Auth::user()->total_point }} p</h3>
+                <div class="grid grid-cols-3 gap-2 mt-8 mx-auto">
                     @foreach ($stamps as $stamp)
                     <div class='bg-white border border-gray-200 border-2 rounded-2xl'>
                         <div class="border-b-2 border-gray-200">
@@ -30,24 +31,29 @@
                                 <p class="block ml-auto" name="stamp[price]">{{ $stamp->price }} p</p>
                             </div>
                         </div>
-                        @if ($stamp->isBought())
-                            <form action="/stamps/{{ $stamp->id }}" method="POST">
-                                @method("PUT")
-                                @csrf
-                                <button class="block h-10 w-32 py-1 font-semibold text-center text-white border rounded-full hover:border-slate-400 bg-green-400 mx-auto my-1">変更</button>
-                            </form>
-                        @else 
-                            @if ($stamp->canBuy())
+                        @if ($stamp->setting())
+                            <div class="hover:bg-gray-300">
+                                <p class="block h-10 w-44 py-1 font-semibold text-center mx-auto my-1">適用中</p>
+                            </div>
+                        @else
+                            @if ($stamp->isBought())
                                 <form action="/stamps/{{ $stamp->id }}" method="POST">
+                                    @method("PUT")
                                     @csrf
-                                    <button class="block h-10 w-32 py-1 font-semibold text-center text-white border rounded-full hover:border-slate-400 bg-blue-400 mx-auto my-1">購入</button>
+                                    <button class="block h-10 w-32 py-1 font-semibold text-center text-white border rounded-full hover:border-slate-400 bg-green-400 mx-auto my-1">変更</button>
                                 </form>
-                            @else
-                                <div class="hover:bg-gray-300">
-                                    <p class="block h-10 w-44 py-1 font-semibold text-center mx-auto my-1">ポイントが足りません</p>
-                                </div>
-                            @endif 
-                           
+                            @else 
+                                @if ($stamp->canBuy())
+                                    <form action="/stamps/{{ $stamp->id }}" method="POST">
+                                        @csrf
+                                        <button class="block h-10 w-32 py-1 font-semibold text-center text-white border rounded-full hover:border-slate-400 bg-blue-400 mx-auto my-1">購入</button>
+                                    </form>
+                                @else
+                                    <div class="hover:bg-gray-300">
+                                        <p class="block h-10 w-44 py-1 font-semibold text-center mx-auto my-1">ポイントが足りません</p>
+                                    </div>
+                                @endif 
+                            @endif
                         @endif
                     </div>
                     @endforeach

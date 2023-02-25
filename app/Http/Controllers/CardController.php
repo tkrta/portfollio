@@ -18,6 +18,7 @@ class CardController extends Controller
     {
         $card-> users()-> attach(auth()-> user());
         $user['total_point'] -= $card['price'];
+        $user->save();
         return redirect('/cards');
     }
         

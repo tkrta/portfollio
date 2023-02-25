@@ -29,4 +29,5 @@ class StampController extends Controller
         $todo['stamp_id']->fill($input)->save();
         return redirect('/stamps');
     }
+    
 }
