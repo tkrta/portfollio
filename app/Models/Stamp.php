@@ -43,8 +43,10 @@ class Stamp extends Model
             if ($stamp-> id == $this-> id) {
                 return true;
             }
-            return false;
+            
+        
         }
+        return false;
     }
         
         //購入できるかどうか

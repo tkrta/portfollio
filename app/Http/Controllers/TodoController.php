@@ -53,7 +53,7 @@ class TodoController extends Controller
     
     public function delete (Todo $todo)
     {
-        $todo->lasttodo()->delete();
+        $todo->delete();
         return redirect('/');
     }
     

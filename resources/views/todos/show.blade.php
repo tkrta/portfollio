@@ -31,16 +31,21 @@
                                 @endfor
                         </div>
                         <div class="flex block my-4 ml-64">
-                                <form action="/todos/{{ $todo->id }}" id="form_{{ $todo->id }}" method="POST">
+                            <div>
+                                <form action="/todos/{{ $todo->id }}/back" id="form1_{{ $todo->id }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <button type="button" onclick="backTodo({{ $todo->id }})" class="block h-9 w-20 py-1 my-2 text-base font-medium text-center border rounded-full text-black bg-white hover:border-slate-400 hover:bg-green-400 hover:text-white">戻る</button>
                                 </form>
+                            </div>
+                                
+                            <div>    
                                 <form action="/todos/{{ $todo->id }}" id="form_{{ $todo->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" onclick="deleteTodo({{ $todo->id }})" class="block h-9 w-20 py-1 my-2 ml-64 text-base font-medium text-center border rounded-full text-black bg-white hover:border-slate-400 hover:bg-red-400 hover:text-white">削除</button>
                                 </form>
+                            </div>
                         </div>
                         <div class="newtodo">
                             @if ($todo->progress >= 30)
@@ -58,7 +63,7 @@
                 'use strict'
 
                 if (confirm('一日分戻りますか？')) {
-                    document.getElementById(`form_${id}`).submit();
+                    document.getElementById(`form1_${id}`).submit();
                 }
             }
         

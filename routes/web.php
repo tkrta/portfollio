@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/todos', [TodoController::class, 'store']);
     Route::get('/todos/{todo}', [TodoController::class, 'show']);
     Route::post('/todos/{todo}', [TodoController::class, 'did']);
-    Route::put('/todos/{todo}', [TodoController::class, 'back']);
+    Route::put('/todos/{todo}/back', [TodoController::class, 'back']);
     Route::delete('/todos/{todo}', [TodoController::class, 'delete']);
     
     Route::get('/posts', [PostController::class, 'index'])-> name('post');

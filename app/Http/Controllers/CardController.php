@@ -23,10 +23,11 @@ class CardController extends Controller
         return redirect('/cards');
     }
         
-    public function update (Card $card, Todo $todo)
+    public function update (Card $card)
     {
-        $input = $card['id'];
-        $todo['card_id']-> fill($input)-> save();
+        $todo = Todo::orderBy("updated_at", "DESC")->first();
+        $todo->card_id  = $card->id;
+        $todo->save();
         return redirect('/cards');
     }
     

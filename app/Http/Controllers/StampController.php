@@ -17,16 +17,18 @@ class StampController extends Controller
         
     public function buy (Stamp $stamp, User $user)
     {
+        $user = auth()->user();
         $stamp-> users()-> attach(auth()-> user());
         $user['total_point'] -= $stamp['price'];
+        $user->save();
         return redirect('/stamps');
     }
         
-    public function update (Stamp $stamp, Todo $todo)
+    public function update (Stamp $stamp)
     {
-        $stamp-> users()-> attach(auth()-> user());
-        $input = $stamp['id'];
-        $todo['stamp_id']->fill($input)->save();
+        $todo = Todo::orderBy("updated_at", "DESC")->first();
+        $todo->stamp_id  = $stamp->id;
+        $todo->save();
         return redirect('/stamps');
     }
     
