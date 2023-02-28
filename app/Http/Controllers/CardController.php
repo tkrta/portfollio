@@ -16,6 +16,7 @@ class CardController extends Controller
         
     public function buy (Card $card, User $user)
     {
+        $user = auth()->user();
         $card-> users()-> attach(auth()-> user());
         $user['total_point'] -= $card['price'];
         $user->save();

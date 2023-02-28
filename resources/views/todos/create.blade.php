@@ -22,10 +22,12 @@
                             </div>
                             <input type="submit" value="決めた！" class="block h-9 w-32 py-1 my-4 mx-auto text-xl font-medium text-center border rounded-full text-white bg-blue-400 hover:border-slate-400"/>
                         </form>
+                        @if($todo->lasttodo())
                         <div class="text-center text-2xl">
                             <h2>前回の続きはこちらから↓</h2>
                             <a href="/todos/{{ $todo->lasttodo()->id }}" class="underline block mb-4">・ {{ $todo->lasttodo()->todo }}</a>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

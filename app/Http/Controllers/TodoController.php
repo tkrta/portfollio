@@ -27,6 +27,7 @@ class TodoController extends Controller
     
     public function newtodo (Todo $todo, User $user)
     {
+        
         return view('todos/create')-> with(['todo'=> $todo]);
     }
     
@@ -40,16 +41,19 @@ class TodoController extends Controller
         return redirect('/todos/' . $todo->id);
     }
     
-    public function back (Todo $todo)
+    public function back (Todo $todo, User $user)
     {
+        $user = auth()->user();
         $todo['progress'] -= 1;
+        $user['total_point'] -= 1;
         $todo->save();
+        $user->save();
         return redirect('/todos/' . $todo->id);
     }
     
     public function delete (Todo $todo)
     {
-        $todo->delete();
+        $todo->lasttodo()->delete();
         return redirect('/');
     }
     
