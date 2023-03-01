@@ -27,6 +27,9 @@ class Card extends Model
         //適用中かどうか
     public function setting ()
     {
+        if (Todo::where('user_id', '=', auth()->user()->id)->orderBy('updated_at', 'DESC')->first() == NULL) {
+            return false;
+        }
         if (Todo::where('user_id', '=', auth()->user()->id)->orderBy('updated_at', 'DESC')->first()->card_id == $this->id) {
             return true;
         }
@@ -36,13 +39,14 @@ class Card extends Model
     //購入済かどうか
     public function isBought ()
     {
-        foreach (auth()-> user()-> bought_cards as $card)
+        foreach (auth()->user()->bought_cards as $card)
         {
-            if ($card-> id == $this-> id) {
+            if ($card->id == $this->id) {
                 return true;
             }
-            return false;
+
         }
+        return false;
     }
         
     //購入できるかどうか

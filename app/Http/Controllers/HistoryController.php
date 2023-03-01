@@ -14,9 +14,12 @@ class HistoryController extends Controller
     {
         if($todo->where('user_id', '=', auth()->user()->id)->exists()) {
             $history = $todo->where('user_id', '=', auth()->user()->id)->where('progress', '>=', 30)->orderBy('updated_at', 'DESC')->get();
+            return view('history/index')->with(['histories'=>$history]);
         }
+            $history = $todo->where('user_id', '=', auth()->user()->id)->where('progress', '>=', 30)->orderBy('updated_at', 'DESC')->get();
+            return view('history/index')->with(['histories'=>$history]);
     
     
-        return view('history/index')->with(['histories'=>$history]);
+        
     }
 }

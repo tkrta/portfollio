@@ -41,5 +41,4 @@ class MissionController extends Controller
         return Post::where('user_id', '=', auth()->user()->id)->where('user_id', '>=', 1)->exists();
     }
     
-    
 }

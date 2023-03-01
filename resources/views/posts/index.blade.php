@@ -23,11 +23,11 @@
                         <div class="flex ml-4 mt-5 mb-2">
                                 @if ($post->islikes())
                                     <form action={{ "/unlike/" . $post->id }}>
-                                        <button type="button" onclick="deletePost({{ $post->id }})" class="block h-9 w-20 py-1 mb-2 text-base font-medium text-center text-white border rounded-full bg-pink-400 hover:border-slate-400 hover:bg-white hover:text-black">いいね</button>
+                                        <button type="submit" class="block h-9 w-20 py-1 mb-2 text-base font-medium text-center text-white border rounded-full bg-pink-400 hover:border-slate-400 hover:bg-white hover:text-black">いいね</button>
                                     </form>
                                 @else
                                     <form action={{ "/like/" . $post->id }}>
-                                        <button type="button" onclick="deletePost({{ $post->id }})" class="block h-9 w-20 py-1 mb-2 text-base font-medium text-center border rounded-full hover:border-slate-400 hover:bg-pink-400 hover:text-white">いいね</button>
+                                        <button type="submit" class="block h-9 w-20 py-1 mb-2 text-base font-medium text-center border rounded-full hover:border-slate-400 hover:bg-pink-400 hover:text-white">いいね</button>
                                     </form>
                                 @endif
                                 <span class="block h-9 w-20 py-1 mb-2 text-base font-medium text-center ml-1">{{ $post->users->count() }}</span>

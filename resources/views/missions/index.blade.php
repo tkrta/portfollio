@@ -20,12 +20,12 @@
                             <h2 class="block text-2xl py-3">ログインしよう</h2>
                             <div class="block ml-auto pr-2">
                                 <p class="text-xl text-center">10 p</p>
-                                @if ($missions->loggedin())   
-                                    <form action="/missions" method="POST">
-                                        @method("PUT")
-                                        @csrf
-                                        <button class="block h-9 w-20 py-1 text-base font-medium text-center text-white border rounded-full hover:border-slate-400 bg-red-400">GET</button>
-                                    </form>
+                                @if ($missions->loggedin())
+                                        <form action="/missions" method="POST">
+                                            @method("PUT")
+                                            @csrf
+                                            <button class="block h-9 w-20 py-1 text-base font-medium text-center text-white border rounded-full hover:border-slate-400 bg-red-400">GET</button>
+                                        </form>
                                 @endif
                             </div>
                         </div>

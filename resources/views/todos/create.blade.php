@@ -18,7 +18,7 @@
                             @csrf
                             <div>
                                 <input class="w-96 h-24 text-2xl text-center" type="text" name="todo[todo]" placeholder="毎朝ジョギングをする" value="{{ old('todo.todo') }}"/>
-                                <p class="title_error" style="color:red">{{ $errors->first('todo.todo') }}</p>
+                                <p class="block py-2 text-center text-red-500">{{ $errors->first('todo.todo') }}</p>
                             </div>
                             <input type="submit" value="決めた！" class="block h-9 w-32 py-1 my-4 mx-auto text-xl font-medium text-center border rounded-full text-white bg-blue-400 hover:border-slate-400"/>
                         </form>

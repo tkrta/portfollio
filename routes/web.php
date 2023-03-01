@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::get('/cards', [CardController::class, 'index']);
     Route::post('/cards/{card}', [CardController::class, 'buy']);
+    Route::get('/cards/{card}', [CardController::class, 'update']);
     Route::put('/cards/{card}', [CardController::class, 'update']);
     
     Route::get('/histories', [HistoryController::class, 'index'])-> name('history');

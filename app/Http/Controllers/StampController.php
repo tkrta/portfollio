@@ -27,6 +27,9 @@ class StampController extends Controller
     public function update (Stamp $stamp)
     {
         $todo = Todo::orderBy("updated_at", "DESC")->first();
+        if ($todo == null) {
+            return redirect('/stamps');
+        }
         $todo->stamp_id  = $stamp->id;
         $todo->save();
         return redirect('/stamps');

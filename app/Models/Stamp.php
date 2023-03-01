@@ -29,10 +29,13 @@ class Stamp extends Model
         //適用中かどうか
     public function setting ()
     {
-        if (Todo::where('user_id', '=', auth()->user()->id)->orderBy('updated_at', 'DESC')->first()->stamp_id == $this->id) {
-            return true;
+        if (Todo::where('user_id', '=', auth()->user()->id)->orderBy('updated_at', 'DESC')->first() == NULL) {
+            return false;
         }
-        return false;
+            if (Todo::where('user_id', '=', auth()->user()->id)->orderBy('updated_at', 'DESC')->first()->stamp_id == $this->id) {
+                return true;
+            }
+                return false;
     }
         
         //購入済かどうか

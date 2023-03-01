@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Card;
 
 class RegisteredUserController extends Controller
 {
@@ -43,6 +44,9 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+
+        $user->bought_cards()->attach(1);
+        $user->bought_stamps()->attach(1);
 
         Auth::login($user);
 

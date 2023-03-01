@@ -16,12 +16,12 @@
                         <div class="title">
                             <h2 class="my-6 ml-8 text-2xl">タイトル</h2>
                             <input type="text" name="post[title]" placeholder="タイトル" value="{{ old('post.title') }}" class="block w-56 mx-auto text-center text-xl"/>
-                            <p class="title_error" style="color:red">{{ $errors->first('post.title') }}</p>
+                            <p class="block py-2 text-center text-red-600">{{ $errors->first('post.title') }}</p>
                         </div>
                         <div class="body">
                             <h2 class="my-6 ml-8 text-2xl">本文</h2>
                             <textarea name="post[body]" placeholder="コメントを入力" class="block w-56 mx-auto text-center text-xl h-12">{{ old('post.body') }}</textarea>
-                            <p class="body_error" style="color:red">{{ $errors->first('post.body') }}</p>
+                            <p class="block py-2 text-center text-red-600">{{ $errors->first('post.body') }}</p>
                         </div>
                         <input type="submit" value="投稿" class="ml-auto mt-5 mb-2 block h-9 w-20 py-1 text-base font-medium text-center text-white border rounded-full bg-blue-400 hover:border-slate-400"/>
                     </form>

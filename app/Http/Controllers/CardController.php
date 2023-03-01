@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Card;
 use App\Models\Todo;
 use App\Models\User;
-use Illuminate\Http\Request;
+
 
 class CardController extends Controller
 {
@@ -26,6 +27,9 @@ class CardController extends Controller
     public function update (Card $card)
     {
         $todo = Todo::orderBy("updated_at", "DESC")->first();
+        if ($todo == null) {
+            return redirect('/cards');
+        }
         $todo->card_id  = $card->id;
         $todo->save();
         return redirect('/cards');

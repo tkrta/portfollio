@@ -17,12 +17,12 @@
                         <div class= "reply_title">
                             <h2 class="my-6 ml-8 text-2xl">Title</h2>
                             <input type="text" name="reply[title]" placeholder="タイトル" value="{{ old('reply.title') }}" class="block w-56 mx-auto text-center text-xl"/>
-                            <p class="title_error" style="color:red">{{ $errors->first('reply.title') }}</p>
+                            <p class="block py-2 text-center text-red-600">{{ $errors->first('reply.title') }}</p>
                         </div>
                         <div class= "reply_body">
                             <h2 class="my-6 ml-8 text-2xl">Body</h2>
                             <textarea name="reply[body]" placeholder="コメントを入力" class="block w-56 mx-auto text-center text-xl h-12">{{ old('reply.body') }}</textarea>
-                            <p class="body_error" style="color:red">{{ $errors->first('reply.body') }}</p>
+                            <p class="block py-2 text-center text-red-600">{{ $errors->first('reply.body') }}</p>
                         </div>
                         <input type="submit" value="Reply" class="ml-auto mt-5 mb-2 block h-9 w-20 py-1 text-base font-medium text-center text-white border rounded-full bg-green-400 hover:border-slate-400"/>
                     </form>

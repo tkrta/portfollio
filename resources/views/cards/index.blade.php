@@ -17,7 +17,7 @@
             </x-slot>
             <div class="h-screen block mt-4 bg-white">
                 <h3 class="block w-1/4 mt-4 ml-auto pr-2 pt-4 text-right text-xl underline">{{ Auth::user()->total_point }} p</h3>
-                <div class="grid grid-cols-3 gap-2 mt-8">
+                <div class="grid grid-cols-3 gap-2 p-8">
                     @foreach ($cards as $card)
                     <div class='bg-white border border-gray-200 border-2 rounded-2xl'>
                         <div class="border-b-2 border-gray-200">

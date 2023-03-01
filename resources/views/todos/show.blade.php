@@ -16,10 +16,12 @@
                 <div class="mt-8 divide-y-2 divide-gray-200">
                     <div class="bg-white border border-gray-200 border-2 rounded-2xl">
                         <h1 class="text-2xl my-6 text-center mx-auto">{{ $todo->todo }}</h1>
-                        <form action="/todos/{{ $todo->id }}" method="POST">
-                            @csrf
-                            <button class="block h-9 w-20 py-1 my-4 mx-auto text-base font-medium text-center border rounded-full text-black bg-white hover:border-slate-400 hover:bg-blue-400 hover:text-white">できた</button>
-                        </form>
+                        @if ($todo->progress < 30)
+                            <form action="/todos/{{ $todo->id }}" method="POST">
+                                @csrf
+                                <button class="block h-9 w-20 py-1 my-4 mx-auto text-base font-medium text-center border rounded-full text-black bg-white hover:border-slate-400 hover:bg-blue-400 hover:text-white">できた</button>
+                            </form>
+                        @endif
                         <div class="w-96 grid grid-cols-6 gap-0 block border-2 divide-x divide-y divide-black mx-auto">
                                 @for ($i = 0; $i < $todo->progress; $i++)
                                      <img src="{{ $todo->stamp->image_path }}" class="w-16 h-16">
